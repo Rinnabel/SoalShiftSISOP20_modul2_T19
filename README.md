@@ -239,12 +239,12 @@ execv(\"/bin/rm\", argv);\n}\n", getpid());
      return 0;
 }
 ```
-__case__ a akan dijalankan jika inputannya adalah -a. __case__ b akan dijalankan jika inputannya adalah -b.
-__fopen()__ digunakan untuk membuka/membuat file. "Killer.c" adalah nama filenya, "w" adalah opsi untuk melakukan write pada file.
-__fprintf()__ digunakan untuk menuliskan pada file yang sedang dibuka dalam openfile ( kiler.c ).
-__fclose()__ digunakan untuk menutup file yang sedang terbuka.
-__break;__ untuk mengakhiri __switch__.
-__default:__ adalah jika argumen yang dimasukkan tidak didefinisikan dalam case.
+- __case__ a akan dijalankan jika inputannya adalah -a. __case__ b akan dijalankan jika inputannya adalah -b.
+- __fopen()__ digunakan untuk membuka/membuat file. "Killer.c" adalah nama filenya, "w" adalah opsi untuk melakukan write pada file.
+- __fprintf()__ digunakan untuk menuliskan pada file yang sedang dibuka dalam openfile ( kiler.c ).
+- __fclose()__ digunakan untuk menutup file yang sedang terbuka.
+- __break;__ untuk mengakhiri __switch__.
+- __default:__ adalah jika argumen yang dimasukkan tidak didefinisikan dalam case.
 ``` c
 pid = fork();
 if (pid == 0) {
@@ -281,9 +281,9 @@ Daemon akan menjalankan proses yang terdapat didalam while.
       execv("/bin/mkdir", argv);
 ```
 Kode diatas adalah untuk mendapatkan waktu sekarang dalam format tahun-bulan-hari_jam-menit-detik. Akan tersimpan dalam variable bernama buffer.
-__localtime()__ Berfungsi untuk mendapatkan waktu sekarang berdasarkan epoc UNIX.
-__strftime__ akan menyimpan waktu dalam format yang diinginkan.
-__execv__ akan membuat folder (mkdir) dengan nama dari buffer ( waktu saat ini yang sudah diformat).
+-  __localtime()__ Berfungsi untuk mendapatkan waktu sekarang berdasarkan epoc UNIX.
+-  __strftime__ akan menyimpan waktu dalam format yang diinginkan.
+-  __execv__ akan membuat folder (mkdir) dengan nama dari buffer ( waktu saat ini yang sudah diformat).
 ``` c
       child_id = fork();
       if (child_id == 0){
@@ -311,10 +311,10 @@ __execv__ akan membuat folder (mkdir) dengan nama dari buffer ( waktu saat ini y
 ```
 Kita lakukan fork lagi.
 Perulangan __for__ untuk menjalankan proses sebanyak 20 kali.
-__time(NULL)__ Digunakan untuk mengambil waktu epoc UNIX.
-__sprintf()__ Digunakan untuk menuliskan string pada variabel (..., ).
-__wget -O path web NULL__ wget berfungsi untuk mendownload gambar dari website, -O berfungsi untuk mengganti output ( nama file yang didownload ), path isinya adalah directory file disimpan, web berisi link dari piscum.photos yang sudah ditambah dengan ekstensi epoc%1000 lalu ditambah 100 ( akan mendownload gambar dengan ukuran tersebut ).
-__sleep(5)__ akan memberi proses delay.
+-  __time(NULL)__ Digunakan untuk mengambil waktu epoc UNIX.
+-  __sprintf()__ Digunakan untuk menuliskan string pada variabel (..., ).
+-  __wget -O path web NULL__ wget berfungsi untuk mendownload gambar dari website, -O berfungsi untuk mengganti output ( nama file yang didownload ), path isinya adalah directory file disimpan, web berisi link dari piscum.photos yang sudah ditambah dengan ekstensi epoc%1000 lalu ditambah 100 ( akan mendownload gambar dengan ukuran tersebut ).
+-  __sleep(5)__ akan memberi proses delay.
 ``` c
     while(wait(NULL) > 0);
     child_id = fork();
@@ -333,9 +333,9 @@ __sleep(5)__ akan memberi proses delay.
 sleep(30);
 }
 ```
-__while(wait(NULL) > 0)__ berfungsi untuk menunggu agar child processs selesai dijalankan terlebih dahulu.
+-  __while(wait(NULL) > 0)__ berfungsi untuk menunggu agar child processs selesai dijalankan terlebih dahulu.
 Proses selanjutnya yang dilakukan adalah menzip folder yang sudah terisi dengan 20 gambar lalu menghapus folder tersebut. Menggunakan zip dan rm -r ( rekursif untuk menghapus folder beserta isinya ).
-__sleep(30)__ Berfungsi untuk memberi delay pada daemon selama 30 detik.
+-  __sleep(30)__ Berfungsi untuk memberi delay pada daemon selama 30 detik.
 
 **Screenshot hasil :**\
 
