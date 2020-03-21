@@ -185,9 +185,10 @@ Selain menjalankan proses diatas, program juga akan membuat sebuah program kille
 
 #### Link code soal 2 :
 
-##### Source code :
+##### Source code : [soal 2](https://github.com/bawangcode/SoalShiftSISOP20_modul2_T19/blob/master/soal2/soal2fix_revisi.c)
 
-**Pembahasan :**
+**Pembahasan :**\
+(Fungsi yang sudah dijelaskan diatasnya tidak akan dijelaskan guna mempersingkat laporan dan efisiensi waktu)
 
 **Screenshot hasil :**\
 
