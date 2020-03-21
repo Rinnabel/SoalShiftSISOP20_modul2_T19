@@ -493,14 +493,23 @@ Parent process akan mengeprint “Program soal 3 selesai dijalankan” jika suda
 
 **Screenshot hasil :**\
 ![](soal3/soal3_1.png)
+
 Program dijalankan
+
 ![](soal3/soal3_2.png)
+
 Kedua folder berhasil terbuat, yaitu indomie dan sedaap. Selanjutnya, file akan diextract ke dalam folder jpg
+
 ![](soal3/soal3_3.png)
+
 File yang berupa directory akan dipindahkan ke folder indomie
+
 ![](soal3/soal3_4.png)
+
 Di dalam setiap directory di indomie terdapat file coba1.txt dan coba2.txt yang selisih terbuatnya 3 detik
+
 ![](soal3/soal3_5.png)
+
 File yang bukan berupa directory akan dipindahkan ke folder sedaap.
 
 **Kesulitan :**\
