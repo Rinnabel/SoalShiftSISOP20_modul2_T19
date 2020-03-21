@@ -187,8 +187,155 @@ Selain menjalankan proses diatas, program juga akan membuat sebuah program kille
 
 ##### Source code : [soal 2](https://github.com/bawangcode/SoalShiftSISOP20_modul2_T19/blob/master/soal2/soal2fix_revisi.c)
 
-**Pembahasan :**\
+**Pembahasan :**
 (Fungsi yang sudah dijelaskan diatasnya tidak akan dijelaskan guna mempersingkat laporan dan efisiensi waktu)
+
+``` c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <syslog.h>
+#include <string.h>
+#include <time.h>
+#include <wait.h>
+```
+Diatas ini adalah library yang digunakan untuk menjalankan kode.
+``` c
+   int mode;
+   mode = getopt (argc, argv, "ab");
+```
+__getopt()__ adalah fungsi untuk mem-parsing argumen. Digunakan untuk mengambil argumen lalu disimpan kedalam variable mode.
+``` c
+   switch (mode){
+```
+__switch(mode)__ switch digunakan untuk menjalankan case berdasarkan isi daari varriable mode.
+``` c
+     case 'a':
+     FILE *openfile;
+     openfile = fopen("killer.c", "w");
+     fprintf(openfile, "#include <unistd.h>\n#include <wait.h>\nint main(){\n
+pid_t child_id = fork();\nif (child_id == 0){\nchar *argv[] = {\"pkill\", \"-9\", \"-s\", \"%d\", NULL};\n
+execv(\"/usr/bin/pkill\", argv);\n}\nwhile(wait(NULL) > 0);\nchar *argv[] = {\"rm\", \"killer\", NULL};\n
+execv(\"/bin/rm\", argv);\n}\n", sid);
+     fclose(openfile);
+     break;
+     
+     case 'b':
+     FILE *openfile;
+     openfile = fopen("killer.c", "w");
+     fprintf(openfile, "#include <unistd.h>\n#include <wait.h>\nint main(){\n
+pid_t child_id = fork();\nif (child_id == 0){\nchar *argv[] = {\"kill\", \"-9\", \"%d\", NULL};\n
+execv(\"/bin/kill\", argv);\n}\nwhile(wait(NULL) > 0);\nchar *argv[] = {\"rm\", \"killer\", NULL};\n
+execv(\"/bin/rm\", argv);\n}\n", getpid());
+     fclose(openfile);
+     break;
+
+     default:
+     printf("Mode tidak tersedia");
+     return 0;
+}
+```
+__case__ a akan dijalankan jika inputannya adalah -a. __case__ b akan dijalankan jika inputannya adalah -b.
+__fopen()__ digunakan untuk membuka/membuat file. "Killer.c" adalah nama filenya, "w" adalah opsi untuk melakukan write pada file.
+__fprintf()__ digunakan untuk menuliskan pada file yang sedang dibuka dalam openfile ( kiler.c ).
+__fclose()__ digunakan untuk menutup file yang sedang terbuka.
+__break;__ untuk mengakhiri __switch__.
+__default:__ adalah jika argumen yang dimasukkan tidak didefinisikan dalam case.
+``` c
+pid = fork();
+if (pid == 0) {
+  char *argv[] = {"gcc", "killer.c", "-o", "killer", NULL};
+  execv("/usr/bin/gcc", argv);
+}
+  while(wait(NULL) > 0);
+  pid = fork();
+  if (pid == 0) {
+  char *argv[] = {"rm", "killer.c", NULL};
+  execv("/bin/rm", argv);
+}
+```
+Code diatas berfungsi untuk mengeksekusi file killer.c yang sudah dibuat sebelumnya lalu menghapus source code killer.c. Menggunakan __execv()__.
+``` c
+close(STDIN_FILENO);
+close(STDOUT_FILENO);
+close(STDERR_FILENO);
+```
+Kumpulan __close()__ diatas untuk menghilangkan interaksi user dengan proses.
+``` c
+while (1) {
+```
+Daemon akan menjalankan proses yang terdapat didalam while.
+``` c
+      time_t timer;
+      char buffer[26];
+      struct tm* tm_info;
+      timer = time(NULL);
+      tm_info = localtime(&timer);
+      strftime(buffer, 26, "%Y-%m-%d_%H:%M:%S", tm_info);
+      
+      char *argv[] = {"mkdir", buffer, NULL};
+      execv("/bin/mkdir", argv);
+```
+Kode diatas adalah untuk mendapatkan waktu sekarang dalam format tahun-bulan-hari_jam-menit-detik. Akan tersimpan dalam variable bernama buffer.
+__localtime()__ Berfungsi untuk mendapatkan waktu sekarang berdasarkan epoc UNIX.
+__strftime__ akan menyimpan waktu dalam format yang diinginkan.
+__execv__ akan membuat folder (mkdir) dengan nama dari buffer ( waktu saat ini yang sudah diformat).
+``` c
+      child_id = fork();
+      if (child_id == 0){
+      //looping 20x buat download gambar
+      for(int i=1; i<=20; i++){
+
+        child_id = fork();
+        if (child_id ==0){
+
+        time_t timer;
+        char buffer_2[26];
+        struct tm* tm_info;
+        epoc = time(NULL);
+        tm_info = localtime(&timer);
+        strftime(buffer_2, 26, "%Y-%m-%d_%H:%M:%S", tm_info);
+        sprintf(web, "https://picsum.photos/%ld", ((epoc%1000)+100));
+        sprintf(path, "%s/%s", buffer, buffer_2);
+
+        char *argv_download[]={"wget", "-O", path, web, NULL};
+        execv("/bin/wget", argv_download);
+      }else{
+        while(wait(NULL) > 0);
+          sleep(5);
+
+```
+Kita lakukan fork lagi.
+Perulangan __for__ untuk menjalankan proses sebanyak 20 kali.
+__time(NULL)__ Digunakan untuk mengambil waktu epoc UNIX.
+__sprintf()__ Digunakan untuk menuliskan string pada variabel (..., ).
+__wget -O path web NULL__ wget berfungsi untuk mendownload gambar dari website, -O berfungsi untuk mengganti output ( nama file yang didownload ), path isinya adalah directory file disimpan, web berisi link dari piscum.photos yang sudah ditambah dengan ekstensi epoc%1000 lalu ditambah 100 ( akan mendownload gambar dengan ukuran tersebut ).
+__sleep(5)__ akan memberi proses delay.
+``` c
+    while(wait(NULL) > 0);
+    child_id = fork();
+    if (child_id == 0){
+
+      char zip[100];
+      sprintf(zip, "%s.zip", buffer);
+      char *argv[] = {"zip", "-r", zip, buffer, NULL};
+      execv("/usr/bin/zip", argv);
+    }else{
+      while(wait(NULL) > 0);
+      char *argv[] = {"rm", "-r", buffer, NULL};
+      execv("/bin/rm", argv);
+    }
+}
+sleep(30);
+}
+```
+__while(wait(NULL) > 0)__ berfungsi untuk menunggu agar child processs selesai dijalankan terlebih dahulu.
+Proses selanjutnya yang dilakukan adalah menzip folder yang sudah terisi dengan 20 gambar lalu menghapus folder tersebut. Menggunakan zip dan rm -r ( rekursif untuk menghapus folder beserta isinya ).
+__sleep(30)__ Berfungsi untuk memberi delay pada daemon selama 30 detik.
 
 **Screenshot hasil :**\
 
