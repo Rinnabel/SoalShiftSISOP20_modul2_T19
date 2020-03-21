@@ -132,6 +132,44 @@ sleep(1);
 
 **Screenshot hasil :**\
 ![](soal1/soal1.png)
+- Program tersebut dijalankan pada pukul 22.43.02. file path .sh yang dijalankan adalah program bash untuk membuat directory. Pada awalnya tidak ada directory bernama “test”. Kemudian setelah program berjalan, dibuatlah directory bernama “test”.
+
+**Kesulitan :**
+- Belum pernah mengerjakan soal yang serupa, kurang referensi untuk mengerjakan soal yang diberikan, bingung.
+
+# Nomor 2
+
+Shisoppu mantappu! itulah yang selalu dikatakan Kiwa setiap hari karena sekarang dia
+merasa sudah jago materi sisop. Karena merasa jago, suatu hari Kiwa iseng membuat
+sebuah program.
+1. Pertama-tama, Kiwa membuat sebuah folder khusus, di dalamnya dia membuat
+sebuah program C yang per 30 detik membuat sebuah folder dengan nama
+timestamp [YYYY-mm-dd_HH:ii:ss].
+2. Tiap-tiap folder lalu diisi dengan 20 gambar yang di download dari
+https://picsum.photos/, dimana tiap gambar di download setiap 5 detik. Tiap gambar berbentuk persegi dengan ukuran (t%1000)+100 piksel dimana t adalahdetik Epoch Unix. Gambar tersebut diberi nama dengan format timestamp [YYYY-
+mm-dd_HH:ii:ss].
+3. Agar rapi, setelah sebuah folder telah terisi oleh 20 gambar, folder akan di zip dan
+folder akan di delete(sehingga hanya menyisakan .zip).
+4. Karena takut program tersebut lepas kendali, Kiwa ingin program tersebut men-
+generate sebuah program "killer" yang siap di run(executable) untuk menterminasi semua operasi program tersebut. Setelah di run, program yangmenterminasi ini lalu akan mendelete dirinya sendiri.
+5. Kiwa menambahkan bahwa program utama bisa dirun dalam dua mode, yaitu
+MODE_A dan MODE_B. untuk mengaktifkan MODE_A, program harus dijalankan
+dengan argumen -a. Untuk MODE_B, program harus dijalankan dengan argumen
+-b. Ketika dijalankan dalam MODE_A, program utama akan langsung
+menghentikan semua operasinya ketika program killer dijalankan. Untuk
+MODE_B, ketika program killer dijalankan, program utama akan berhenti tapi
+membiarkan proses di setiap folder yang masih berjalan sampai selesai(semua
+folder terisi gambar, terzip lalu di delete).
+
+Kiwa lalu terbangun dan sedih karena menyadari programnya hanya sebuah mimpi.
+Buatlah program dalam mimpi Kiwa jadi nyata!
+Catatan:
+- Tidak boleh memakai system().
+- Program utama harus ter-detach dari terminal
+Hint:
+- Gunakan fitur picsum.photos untuk mendapatkan gambar dengan ukuran
+tertentu
+- Epoch Unix bisa didapatkan dari time()
 
 
 
